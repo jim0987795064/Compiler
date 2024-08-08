@@ -1,0 +1,4 @@
+error:2: syntax error, unexpected PRINT, expecting IDENT or INT_LIT or FLOAT_LIT
+> Dump symbol table (scope level: 0)
+Index     Name      Type      Address   Lineno    Element type
+Total lines: 2

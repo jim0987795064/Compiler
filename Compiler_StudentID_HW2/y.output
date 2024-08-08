@@ -1,0 +1,1481 @@
+Terminals unused in grammar
+
+    STRING_LIT
+
+
+Rules useless in parser due to conflicts
+
+   25 operation: ε
+
+   35 StatementList: StatementList
+
+   42 IfStmt: ε
+
+   43 LoopStmt: ε
+
+
+State 0 conflicts: 18 reduce/reduce
+State 1 conflicts: 18 reduce/reduce
+State 3 conflicts: 8 shift/reduce, 1 reduce/reduce
+State 7 conflicts: 9 shift/reduce
+State 13 conflicts: 2 shift/reduce
+State 18 conflicts: 3 shift/reduce
+State 24 conflicts: 4 shift/reduce
+State 25 conflicts: 4 shift/reduce
+State 26 conflicts: 4 shift/reduce
+State 27 conflicts: 4 shift/reduce
+State 28 conflicts: 4 shift/reduce
+State 29 conflicts: 4 shift/reduce
+State 31 conflicts: 1 shift/reduce
+State 32 conflicts: 4 shift/reduce
+State 33 conflicts: 4 shift/reduce
+State 34 conflicts: 4 shift/reduce
+State 35 conflicts: 4 shift/reduce
+State 36 conflicts: 4 shift/reduce
+State 37 conflicts: 4 shift/reduce
+State 38 conflicts: 4 shift/reduce
+State 39 conflicts: 4 shift/reduce
+State 40 conflicts: 4 shift/reduce
+State 41 conflicts: 4 shift/reduce
+State 42 conflicts: 4 shift/reduce
+State 45 conflicts: 18 reduce/reduce
+State 68 conflicts: 9 shift/reduce
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: StatementList
+
+    2 Type: INT
+    3     | FLOAT
+    4     | STRING
+    5     | BOOL
+
+    6 operation: ADD operation
+    7          | POS operation
+    8          | NEG operation
+    9          | SUB operation
+   10          | MUL operation
+   11          | QUO operation
+   12          | REM operation
+   13          | INC operation
+   14          | DEC operation
+   15          | LPAREN operation
+   16          | RPAREN operation
+   17          | GTR operation
+   18          | OR operation
+   19          | NOT operation
+   20          | TRUE operation
+   21          | FALSE operation
+   22          | AND operation
+   23          | IntArithStmt
+   24          | SEMICOLON
+   25          | ε
+
+   26 Literal: INT_LIT
+   27        | FLOAT_LIT
+
+   28 StatementList: StatementList DeclarationStmt
+   29              | Block
+   30              | IfStmt
+   31              | LoopStmt
+   32              | StatementList PrintStmt
+   33              | StatementList IntArithStmt
+   34              | StatementList DoubleSymbolStmt
+   35              | StatementList
+   36              | ε
+
+   37 DeclarationStmt: Type IDENT SEMICOLON
+
+   38 IntArithStmt: IDENT operation IDENT SEMICOLON
+   39             | Literal operation IntArithStmt SEMICOLON
+
+   40 DoubleSymbolStmt: IDENT operation SEMICOLON
+
+   41 Block: "{" StatementList "}"
+
+   42 IfStmt: ε
+
+   43 LoopStmt: ε
+
+   44 PrintStmt: PRINT LPAREN StatementList RPAREN SEMICOLON
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    INT (258) 2
+    FLOAT (259) 3
+    BOOL (260) 5
+    STRING (261) 4
+    SUB (262) 9
+    MUL (263) 10
+    QUO (264) 11
+    REM (265) 12
+    INC (266) 13
+    DEC (267) 14
+    SEMICOLON (268) 24 37 38 39 40 44
+    IDENT <s_val> (269) 37 38 40
+    ADD <s_val> (270) 6
+    PRINT <s_val> (271) 44
+    LPAREN <s_val> (272) 15 44
+    RPAREN <s_val> (273) 16 44
+    POS <s_val> (274) 7
+    NEG <s_val> (275) 8
+    GTR <s_val> (276) 17
+    AND <s_val> (277) 22
+    OR <s_val> (278) 18
+    NOT <s_val> (279) 19
+    TRUE <s_val> (280) 20
+    FALSE <s_val> (281) 21
+    INT_LIT <i_val> (282) 26
+    FLOAT_LIT <f_val> (283) 27
+    STRING_LIT <s_val> (284)
+    "{" (285) 41
+    "}" (286) 41
+
+
+Nonterminals, with rules where they appear
+
+    $accept (32)
+        on left: 0
+    Program (33)
+        on left: 1
+        on right: 0
+    Type <s_val> (34)
+        on left: 2 3 4 5
+        on right: 37
+    operation <s_val> (35)
+        on left: 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+        on right: 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 38 39 40
+    Literal (36)
+        on left: 26 27
+        on right: 39
+    StatementList (37)
+        on left: 28 29 30 31 32 33 34 35 36
+        on right: 1 28 32 33 34 35 41 44
+    DeclarationStmt (38)
+        on left: 37
+        on right: 28
+    IntArithStmt <i_val> (39)
+        on left: 38 39
+        on right: 23 33 39
+    DoubleSymbolStmt (40)
+        on left: 40
+        on right: 34
+    Block (41)
+        on left: 41
+        on right: 29
+    IfStmt (42)
+        on left: 42
+        on right: 30
+    LoopStmt (43)
+        on left: 43
+        on right: 31
+    PrintStmt (44)
+        on left: 44
+        on right: 32
+
+
+State 0
+
+    0 $accept: • Program $end
+
+    "{"  shift, and go to state 1
+
+    $end       reduce using rule 36 (StatementList)
+    $end       [reduce using rule 42 (IfStmt)]
+    $end       [reduce using rule 43 (LoopStmt)]
+    INT        reduce using rule 36 (StatementList)
+    INT        [reduce using rule 42 (IfStmt)]
+    INT        [reduce using rule 43 (LoopStmt)]
+    FLOAT      reduce using rule 36 (StatementList)
+    FLOAT      [reduce using rule 42 (IfStmt)]
+    FLOAT      [reduce using rule 43 (LoopStmt)]
+    BOOL       reduce using rule 36 (StatementList)
+    BOOL       [reduce using rule 42 (IfStmt)]
+    BOOL       [reduce using rule 43 (LoopStmt)]
+    STRING     reduce using rule 36 (StatementList)
+    STRING     [reduce using rule 42 (IfStmt)]
+    STRING     [reduce using rule 43 (LoopStmt)]
+    IDENT      reduce using rule 36 (StatementList)
+    IDENT      [reduce using rule 42 (IfStmt)]
+    IDENT      [reduce using rule 43 (LoopStmt)]
+    PRINT      reduce using rule 36 (StatementList)
+    PRINT      [reduce using rule 42 (IfStmt)]
+    PRINT      [reduce using rule 43 (LoopStmt)]
+    INT_LIT    reduce using rule 36 (StatementList)
+    INT_LIT    [reduce using rule 42 (IfStmt)]
+    INT_LIT    [reduce using rule 43 (LoopStmt)]
+    FLOAT_LIT  reduce using rule 36 (StatementList)
+    FLOAT_LIT  [reduce using rule 42 (IfStmt)]
+    FLOAT_LIT  [reduce using rule 43 (LoopStmt)]
+    $default   reduce using rule 36 (StatementList)
+
+    Program        go to state 2
+    StatementList  go to state 3
+    Block          go to state 4
+    IfStmt         go to state 5
+    LoopStmt       go to state 6
+
+
+State 1
+
+   41 Block: "{" • StatementList "}"
+
+    "{"  shift, and go to state 1
+
+    INT        reduce using rule 36 (StatementList)
+    INT        [reduce using rule 42 (IfStmt)]
+    INT        [reduce using rule 43 (LoopStmt)]
+    FLOAT      reduce using rule 36 (StatementList)
+    FLOAT      [reduce using rule 42 (IfStmt)]
+    FLOAT      [reduce using rule 43 (LoopStmt)]
+    BOOL       reduce using rule 36 (StatementList)
+    BOOL       [reduce using rule 42 (IfStmt)]
+    BOOL       [reduce using rule 43 (LoopStmt)]
+    STRING     reduce using rule 36 (StatementList)
+    STRING     [reduce using rule 42 (IfStmt)]
+    STRING     [reduce using rule 43 (LoopStmt)]
+    IDENT      reduce using rule 36 (StatementList)
+    IDENT      [reduce using rule 42 (IfStmt)]
+    IDENT      [reduce using rule 43 (LoopStmt)]
+    PRINT      reduce using rule 36 (StatementList)
+    PRINT      [reduce using rule 42 (IfStmt)]
+    PRINT      [reduce using rule 43 (LoopStmt)]
+    INT_LIT    reduce using rule 36 (StatementList)
+    INT_LIT    [reduce using rule 42 (IfStmt)]
+    INT_LIT    [reduce using rule 43 (LoopStmt)]
+    FLOAT_LIT  reduce using rule 36 (StatementList)
+    FLOAT_LIT  [reduce using rule 42 (IfStmt)]
+    FLOAT_LIT  [reduce using rule 43 (LoopStmt)]
+    "}"        reduce using rule 36 (StatementList)
+    "}"        [reduce using rule 42 (IfStmt)]
+    "}"        [reduce using rule 43 (LoopStmt)]
+    $default   reduce using rule 36 (StatementList)
+
+    StatementList  go to state 7
+    Block          go to state 4
+    IfStmt         go to state 5
+    LoopStmt       go to state 6
+
+
+State 2
+
+    0 $accept: Program • $end
+
+    $end  shift, and go to state 8
+
+
+State 3
+
+    1 Program: StatementList •
+   28 StatementList: StatementList • DeclarationStmt
+   32              | StatementList • PrintStmt
+   33              | StatementList • IntArithStmt
+   34              | StatementList • DoubleSymbolStmt
+   35              | StatementList •
+
+    INT        shift, and go to state 9
+    FLOAT      shift, and go to state 10
+    BOOL       shift, and go to state 11
+    STRING     shift, and go to state 12
+    IDENT      shift, and go to state 13
+    PRINT      shift, and go to state 14
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    $end       reduce using rule 1 (Program)
+    $end       [reduce using rule 35 (StatementList)]
+    INT        [reduce using rule 35 (StatementList)]
+    FLOAT      [reduce using rule 35 (StatementList)]
+    BOOL       [reduce using rule 35 (StatementList)]
+    STRING     [reduce using rule 35 (StatementList)]
+    IDENT      [reduce using rule 35 (StatementList)]
+    PRINT      [reduce using rule 35 (StatementList)]
+    INT_LIT    [reduce using rule 35 (StatementList)]
+    FLOAT_LIT  [reduce using rule 35 (StatementList)]
+    $default   reduce using rule 1 (Program)
+
+    Type              go to state 17
+    Literal           go to state 18
+    DeclarationStmt   go to state 19
+    IntArithStmt      go to state 20
+    DoubleSymbolStmt  go to state 21
+    PrintStmt         go to state 22
+
+
+State 4
+
+   29 StatementList: Block •
+
+    $default  reduce using rule 29 (StatementList)
+
+
+State 5
+
+   30 StatementList: IfStmt •
+
+    $default  reduce using rule 30 (StatementList)
+
+
+State 6
+
+   31 StatementList: LoopStmt •
+
+    $default  reduce using rule 31 (StatementList)
+
+
+State 7
+
+   28 StatementList: StatementList • DeclarationStmt
+   32              | StatementList • PrintStmt
+   33              | StatementList • IntArithStmt
+   34              | StatementList • DoubleSymbolStmt
+   35              | StatementList •
+   41 Block: "{" StatementList • "}"
+
+    INT        shift, and go to state 9
+    FLOAT      shift, and go to state 10
+    BOOL       shift, and go to state 11
+    STRING     shift, and go to state 12
+    IDENT      shift, and go to state 13
+    PRINT      shift, and go to state 14
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+    "}"        shift, and go to state 23
+
+    INT        [reduce using rule 35 (StatementList)]
+    FLOAT      [reduce using rule 35 (StatementList)]
+    BOOL       [reduce using rule 35 (StatementList)]
+    STRING     [reduce using rule 35 (StatementList)]
+    IDENT      [reduce using rule 35 (StatementList)]
+    PRINT      [reduce using rule 35 (StatementList)]
+    INT_LIT    [reduce using rule 35 (StatementList)]
+    FLOAT_LIT  [reduce using rule 35 (StatementList)]
+    "}"        [reduce using rule 35 (StatementList)]
+
+    Type              go to state 17
+    Literal           go to state 18
+    DeclarationStmt   go to state 19
+    IntArithStmt      go to state 20
+    DoubleSymbolStmt  go to state 21
+    PrintStmt         go to state 22
+
+
+State 8
+
+    0 $accept: Program $end •
+
+    $default  accept
+
+
+State 9
+
+    2 Type: INT •
+
+    $default  reduce using rule 2 (Type)
+
+
+State 10
+
+    3 Type: FLOAT •
+
+    $default  reduce using rule 3 (Type)
+
+
+State 11
+
+    5 Type: BOOL •
+
+    $default  reduce using rule 5 (Type)
+
+
+State 12
+
+    4 Type: STRING •
+
+    $default  reduce using rule 4 (Type)
+
+
+State 13
+
+   38 IntArithStmt: IDENT • operation IDENT SEMICOLON
+   40 DoubleSymbolStmt: IDENT • operation SEMICOLON
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+
+    operation     go to state 43
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 14
+
+   44 PrintStmt: PRINT • LPAREN StatementList RPAREN SEMICOLON
+
+    LPAREN  shift, and go to state 45
+
+
+State 15
+
+   26 Literal: INT_LIT •
+
+    $default  reduce using rule 26 (Literal)
+
+
+State 16
+
+   27 Literal: FLOAT_LIT •
+
+    $default  reduce using rule 27 (Literal)
+
+
+State 17
+
+   37 DeclarationStmt: Type • IDENT SEMICOLON
+
+    IDENT  shift, and go to state 46
+
+
+State 18
+
+   39 IntArithStmt: Literal • operation IntArithStmt SEMICOLON
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 47
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 19
+
+   28 StatementList: StatementList DeclarationStmt •
+
+    $default  reduce using rule 28 (StatementList)
+
+
+State 20
+
+   33 StatementList: StatementList IntArithStmt •
+
+    $default  reduce using rule 33 (StatementList)
+
+
+State 21
+
+   34 StatementList: StatementList DoubleSymbolStmt •
+
+    $default  reduce using rule 34 (StatementList)
+
+
+State 22
+
+   32 StatementList: StatementList PrintStmt •
+
+    $default  reduce using rule 32 (StatementList)
+
+
+State 23
+
+   41 Block: "{" StatementList "}" •
+
+    $default  reduce using rule 41 (Block)
+
+
+State 24
+
+    9 operation: SUB • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 48
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 25
+
+   10 operation: MUL • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 49
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 26
+
+   11 operation: QUO • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 50
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 27
+
+   12 operation: REM • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 51
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 28
+
+   13 operation: INC • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 52
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 29
+
+   14 operation: DEC • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 53
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 30
+
+   24 operation: SEMICOLON •
+
+    $default  reduce using rule 24 (operation)
+
+
+State 31
+
+   38 IntArithStmt: IDENT • operation IDENT SEMICOLON
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    IDENT  [reduce using rule 25 (operation)]
+
+    operation     go to state 54
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 32
+
+    6 operation: ADD • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 55
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 33
+
+   15 operation: LPAREN • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 56
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 34
+
+   16 operation: RPAREN • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 57
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 35
+
+    7 operation: POS • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 58
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 36
+
+    8 operation: NEG • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 59
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 37
+
+   17 operation: GTR • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 60
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 38
+
+   22 operation: AND • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 61
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 39
+
+   18 operation: OR • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 62
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 40
+
+   19 operation: NOT • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 63
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 41
+
+   20 operation: TRUE • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 64
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 42
+
+   21 operation: FALSE • operation
+
+    SUB        shift, and go to state 24
+    MUL        shift, and go to state 25
+    QUO        shift, and go to state 26
+    REM        shift, and go to state 27
+    INC        shift, and go to state 28
+    DEC        shift, and go to state 29
+    SEMICOLON  shift, and go to state 30
+    IDENT      shift, and go to state 31
+    ADD        shift, and go to state 32
+    LPAREN     shift, and go to state 33
+    RPAREN     shift, and go to state 34
+    POS        shift, and go to state 35
+    NEG        shift, and go to state 36
+    GTR        shift, and go to state 37
+    AND        shift, and go to state 38
+    OR         shift, and go to state 39
+    NOT        shift, and go to state 40
+    TRUE       shift, and go to state 41
+    FALSE      shift, and go to state 42
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    SEMICOLON  [reduce using rule 25 (operation)]
+    IDENT      [reduce using rule 25 (operation)]
+    INT_LIT    [reduce using rule 25 (operation)]
+    FLOAT_LIT  [reduce using rule 25 (operation)]
+
+    operation     go to state 65
+    Literal       go to state 18
+    IntArithStmt  go to state 44
+
+
+State 43
+
+   38 IntArithStmt: IDENT operation • IDENT SEMICOLON
+   40 DoubleSymbolStmt: IDENT operation • SEMICOLON
+
+    SEMICOLON  shift, and go to state 66
+    IDENT      shift, and go to state 67
+
+
+State 44
+
+   23 operation: IntArithStmt •
+
+    $default  reduce using rule 23 (operation)
+
+
+State 45
+
+   44 PrintStmt: PRINT LPAREN • StatementList RPAREN SEMICOLON
+
+    "{"  shift, and go to state 1
+
+    INT        reduce using rule 36 (StatementList)
+    INT        [reduce using rule 42 (IfStmt)]
+    INT        [reduce using rule 43 (LoopStmt)]
+    FLOAT      reduce using rule 36 (StatementList)
+    FLOAT      [reduce using rule 42 (IfStmt)]
+    FLOAT      [reduce using rule 43 (LoopStmt)]
+    BOOL       reduce using rule 36 (StatementList)
+    BOOL       [reduce using rule 42 (IfStmt)]
+    BOOL       [reduce using rule 43 (LoopStmt)]
+    STRING     reduce using rule 36 (StatementList)
+    STRING     [reduce using rule 42 (IfStmt)]
+    STRING     [reduce using rule 43 (LoopStmt)]
+    IDENT      reduce using rule 36 (StatementList)
+    IDENT      [reduce using rule 42 (IfStmt)]
+    IDENT      [reduce using rule 43 (LoopStmt)]
+    PRINT      reduce using rule 36 (StatementList)
+    PRINT      [reduce using rule 42 (IfStmt)]
+    PRINT      [reduce using rule 43 (LoopStmt)]
+    RPAREN     reduce using rule 36 (StatementList)
+    RPAREN     [reduce using rule 42 (IfStmt)]
+    RPAREN     [reduce using rule 43 (LoopStmt)]
+    INT_LIT    reduce using rule 36 (StatementList)
+    INT_LIT    [reduce using rule 42 (IfStmt)]
+    INT_LIT    [reduce using rule 43 (LoopStmt)]
+    FLOAT_LIT  reduce using rule 36 (StatementList)
+    FLOAT_LIT  [reduce using rule 42 (IfStmt)]
+    FLOAT_LIT  [reduce using rule 43 (LoopStmt)]
+    $default   reduce using rule 36 (StatementList)
+
+    StatementList  go to state 68
+    Block          go to state 4
+    IfStmt         go to state 5
+    LoopStmt       go to state 6
+
+
+State 46
+
+   37 DeclarationStmt: Type IDENT • SEMICOLON
+
+    SEMICOLON  shift, and go to state 69
+
+
+State 47
+
+   39 IntArithStmt: Literal operation • IntArithStmt SEMICOLON
+
+    IDENT      shift, and go to state 31
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    Literal       go to state 18
+    IntArithStmt  go to state 70
+
+
+State 48
+
+    9 operation: SUB operation •
+
+    $default  reduce using rule 9 (operation)
+
+
+State 49
+
+   10 operation: MUL operation •
+
+    $default  reduce using rule 10 (operation)
+
+
+State 50
+
+   11 operation: QUO operation •
+
+    $default  reduce using rule 11 (operation)
+
+
+State 51
+
+   12 operation: REM operation •
+
+    $default  reduce using rule 12 (operation)
+
+
+State 52
+
+   13 operation: INC operation •
+
+    $default  reduce using rule 13 (operation)
+
+
+State 53
+
+   14 operation: DEC operation •
+
+    $default  reduce using rule 14 (operation)
+
+
+State 54
+
+   38 IntArithStmt: IDENT operation • IDENT SEMICOLON
+
+    IDENT  shift, and go to state 67
+
+
+State 55
+
+    6 operation: ADD operation •
+
+    $default  reduce using rule 6 (operation)
+
+
+State 56
+
+   15 operation: LPAREN operation •
+
+    $default  reduce using rule 15 (operation)
+
+
+State 57
+
+   16 operation: RPAREN operation •
+
+    $default  reduce using rule 16 (operation)
+
+
+State 58
+
+    7 operation: POS operation •
+
+    $default  reduce using rule 7 (operation)
+
+
+State 59
+
+    8 operation: NEG operation •
+
+    $default  reduce using rule 8 (operation)
+
+
+State 60
+
+   17 operation: GTR operation •
+
+    $default  reduce using rule 17 (operation)
+
+
+State 61
+
+   22 operation: AND operation •
+
+    $default  reduce using rule 22 (operation)
+
+
+State 62
+
+   18 operation: OR operation •
+
+    $default  reduce using rule 18 (operation)
+
+
+State 63
+
+   19 operation: NOT operation •
+
+    $default  reduce using rule 19 (operation)
+
+
+State 64
+
+   20 operation: TRUE operation •
+
+    $default  reduce using rule 20 (operation)
+
+
+State 65
+
+   21 operation: FALSE operation •
+
+    $default  reduce using rule 21 (operation)
+
+
+State 66
+
+   40 DoubleSymbolStmt: IDENT operation SEMICOLON •
+
+    $default  reduce using rule 40 (DoubleSymbolStmt)
+
+
+State 67
+
+   38 IntArithStmt: IDENT operation IDENT • SEMICOLON
+
+    SEMICOLON  shift, and go to state 71
+
+
+State 68
+
+   28 StatementList: StatementList • DeclarationStmt
+   32              | StatementList • PrintStmt
+   33              | StatementList • IntArithStmt
+   34              | StatementList • DoubleSymbolStmt
+   35              | StatementList •
+   44 PrintStmt: PRINT LPAREN StatementList • RPAREN SEMICOLON
+
+    INT        shift, and go to state 9
+    FLOAT      shift, and go to state 10
+    BOOL       shift, and go to state 11
+    STRING     shift, and go to state 12
+    IDENT      shift, and go to state 13
+    PRINT      shift, and go to state 14
+    RPAREN     shift, and go to state 72
+    INT_LIT    shift, and go to state 15
+    FLOAT_LIT  shift, and go to state 16
+
+    INT        [reduce using rule 35 (StatementList)]
+    FLOAT      [reduce using rule 35 (StatementList)]
+    BOOL       [reduce using rule 35 (StatementList)]
+    STRING     [reduce using rule 35 (StatementList)]
+    IDENT      [reduce using rule 35 (StatementList)]
+    PRINT      [reduce using rule 35 (StatementList)]
+    RPAREN     [reduce using rule 35 (StatementList)]
+    INT_LIT    [reduce using rule 35 (StatementList)]
+    FLOAT_LIT  [reduce using rule 35 (StatementList)]
+
+    Type              go to state 17
+    Literal           go to state 18
+    DeclarationStmt   go to state 19
+    IntArithStmt      go to state 20
+    DoubleSymbolStmt  go to state 21
+    PrintStmt         go to state 22
+
+
+State 69
+
+   37 DeclarationStmt: Type IDENT SEMICOLON •
+
+    $default  reduce using rule 37 (DeclarationStmt)
+
+
+State 70
+
+   39 IntArithStmt: Literal operation IntArithStmt • SEMICOLON
+
+    SEMICOLON  shift, and go to state 73
+
+
+State 71
+
+   38 IntArithStmt: IDENT operation IDENT SEMICOLON •
+
+    $default  reduce using rule 38 (IntArithStmt)
+
+
+State 72
+
+   44 PrintStmt: PRINT LPAREN StatementList RPAREN • SEMICOLON
+
+    SEMICOLON  shift, and go to state 74
+
+
+State 73
+
+   39 IntArithStmt: Literal operation IntArithStmt SEMICOLON •
+
+    $default  reduce using rule 39 (IntArithStmt)
+
+
+State 74
+
+   44 PrintStmt: PRINT LPAREN StatementList RPAREN SEMICOLON •
+
+    $default  reduce using rule 44 (PrintStmt)
